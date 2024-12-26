@@ -43,7 +43,8 @@ class _GetUserMediaState extends State<GetUserMedia> {
     };
 
     try {
-      final stream = await navigator.getUserMedia(mediaConstraints);
+      // navigator.mediaDevices.getUserMediaを使用
+      final stream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
       setState(() {
         localStream = stream;
         localRenderer.srcObject = localStream;
