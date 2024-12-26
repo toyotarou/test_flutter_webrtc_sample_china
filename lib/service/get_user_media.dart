@@ -56,7 +56,21 @@ class _GetUserMediaState extends State<GetUserMedia> {
   }
 
   ///
-  close() async {}
+  close() async {
+    try {
+      // MediaStream内のすべてのトラックを停止
+      localStream.getTracks().forEach((track) => track.stop());
+
+      setState(() {
+        // リソース解放
+        localStream.dispose();
+        localRenderer.srcObject = null;
+        isOpen = false;
+      });
+    } catch (e) {
+      print('Error closing media stream: $e');
+    }
+  }
 
   ///
   @override
