@@ -80,16 +80,16 @@ class _ControlDeviceState extends State<ControlDevice> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('GetUserMedia')),
+      appBar: AppBar(title: const Text('GetUserMedia')),
       body: OrientationBuilder(builder: (context, orientation) {
         return Center(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
                 RTCVideoView(localRenderer),
-                if (!isOpen) Center(child: Text('No video stream')),
+                if (!isOpen) const Center(child: Text('No video stream')),
               ],
             ),
           ),
@@ -103,22 +103,10 @@ class _ControlDeviceState extends State<ControlDevice> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(
-                onPressed: () {
-                  turnCamera();
-                },
-                icon: Icon(cameraOff ? Icons.videocam_off : Icons.videocam)),
-            IconButton(
-                onPressed: () {
-                  switchCamera();
-                },
-                icon: Icon(Icons.switch_camera)),
-            IconButton(
-                onPressed: () {
-                  turnMic();
-                },
-                icon: Icon(micOff ? Icons.mic_off : Icons.mic)),
-            IconButton(onPressed: () {}, icon: Icon(speakerOn ? Icons.volume_up : Icons.volume_down)),
+            IconButton(onPressed: () => turnCamera(), icon: Icon(cameraOff ? Icons.videocam_off : Icons.videocam)),
+            IconButton(onPressed: () => switchCamera(), icon: const Icon(Icons.switch_camera)),
+            IconButton(onPressed: () => turnMic(), icon: Icon(micOff ? Icons.mic_off : Icons.mic)),
+            IconButton(onPressed: () => switchSpeaker(), icon: Icon(speakerOn ? Icons.volume_up : Icons.volume_down)),
           ],
         ),
       ),
@@ -165,5 +153,22 @@ class _ControlDeviceState extends State<ControlDevice> {
         print('micOn');
       }
     } else {}
+  }
+
+  ///
+  switchSpeaker() {
+    setState(() {
+      speakerOn = !speakerOn;
+
+      MediaStreamTrack audioTrack = localStream.getAudioTracks()[0];
+
+      audioTrack.enableSpeakerphone(speakerOn);
+
+      if (speakerOn) {
+        print('speakerOn');
+      } else {
+        print('speakerOff');
+      }
+    });
   }
 }

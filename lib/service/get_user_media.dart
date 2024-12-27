@@ -76,16 +76,16 @@ class _GetUserMediaState extends State<GetUserMedia> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('GetUserMedia')),
+      appBar: AppBar(title: const Text('GetUserMedia')),
       body: OrientationBuilder(builder: (context, orientation) {
         return Center(
-          child: Container(
+          child: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: Stack(
               children: [
                 RTCVideoView(localRenderer),
-                if (!isOpen) Center(child: Text('No video stream')),
+                if (!isOpen) const Center(child: Text('No video stream')),
               ],
             ),
           ),

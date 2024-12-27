@@ -14,20 +14,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('WebRTC sample'),
+        title: const Text('WebRTC sample'),
       ),
       body: ListView(
         children: [
           ListTile(
-            title: Text('GetUserMedia Sample'),
+            title: const Text('GetUserMedia Sample'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => GetUserMedia()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const GetUserMedia()));
             },
           ),
           ListTile(
-            title: Text('Control Device Sample'),
+            title: const Text('Control Device Sample'),
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => ControlDevice()));
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const ControlDevice()));
             },
           )
         ],
