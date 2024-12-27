@@ -103,7 +103,11 @@ class _ControlDeviceState extends State<ControlDevice> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            IconButton(onPressed: () {}, icon: Icon(cameraOff ? Icons.videocam_off : Icons.videocam)),
+            IconButton(
+                onPressed: () {
+                  turnCamera();
+                },
+                icon: Icon(cameraOff ? Icons.videocam_off : Icons.videocam)),
             IconButton(
                 onPressed: () {
                   switchCamera();
@@ -125,5 +129,18 @@ class _ControlDeviceState extends State<ControlDevice> {
     } else {
       print('No video tracks available for switching camera');
     }
+  }
+
+  ///
+  turnCamera() {
+    if (localStream.getVideoTracks().isNotEmpty) {
+      var muted = !cameraOff;
+
+      setState(() {
+        cameraOff = muted;
+      });
+
+      localStream.getVideoTracks()[0].enabled = !muted;
+    } else {}
   }
 }
