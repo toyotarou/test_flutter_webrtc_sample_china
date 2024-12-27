@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:test_flutter_webrtc_china/service/control_device.dart';
 import 'package:test_flutter_webrtc_china/service/get_user_media.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -21,6 +22,12 @@ class _HomeScreenState extends State<HomeScreen> {
             title: Text('GetUserMedia Sample'),
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => GetUserMedia()));
+            },
+          ),
+          ListTile(
+            title: Text('Control Device Sample'),
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => ControlDevice()));
             },
           )
         ],

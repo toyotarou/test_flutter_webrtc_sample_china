@@ -6,3 +6,7 @@
 ---
 [8Flutter WebRTC 访问设备 视频渲染](https://www.youtube.com/watch?v=kwn7jOlri3s&list=PLkw2DoqzNODGXFuOlJdb8mIEq0W6n_J1J&index=9)
 ---
+[9Flutter WebRTC 手机屏幕共享实现](https://www.youtube.com/watch?v=k3eN9Eedthc&list=PLkw2DoqzNODGXFuOlJdb8mIEq0W6n_J1J&index=10)
+---
+[10Flutter WebRTC 控制设备 初始化](https://www.youtube.com/watch?v=GWUi6PROtsM)
+---
