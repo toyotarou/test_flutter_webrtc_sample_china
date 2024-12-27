@@ -113,7 +113,11 @@ class _ControlDeviceState extends State<ControlDevice> {
                   switchCamera();
                 },
                 icon: Icon(Icons.switch_camera)),
-            IconButton(onPressed: () {}, icon: Icon(micOff ? Icons.mic_off : Icons.mic)),
+            IconButton(
+                onPressed: () {
+                  turnMic();
+                },
+                icon: Icon(micOff ? Icons.mic_off : Icons.mic)),
             IconButton(onPressed: () {}, icon: Icon(speakerOn ? Icons.volume_up : Icons.volume_down)),
           ],
         ),
@@ -141,6 +145,25 @@ class _ControlDeviceState extends State<ControlDevice> {
       });
 
       localStream.getVideoTracks()[0].enabled = !muted;
+    } else {}
+  }
+
+  ///
+  turnMic() {
+    if (localStream.getVideoTracks().isNotEmpty) {
+      var muted = !micOff;
+
+      setState(() {
+        micOff = muted;
+      });
+
+      localStream.getAudioTracks()[0].enabled = !muted;
+
+      if (muted) {
+        print('micOff');
+      } else {
+        print('micOn');
+      }
     } else {}
   }
 }
